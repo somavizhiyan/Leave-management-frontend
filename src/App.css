@@ -1,38 +1,266 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sign-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  background-color: #f5f5f5;
 }
 
-.App-link {
-  color: #61dafb;
+.sign-container > div {
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+  color: #888;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+a:hover {
+  color: #555;
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 24px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 320px;
+}
+
+.form-head {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-head h4 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.form-head p {
+  font-size: 14px;
+  color: #777;
+  margin-top: 0;
+}
+
+.from-inputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+label {
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #333;
+}
+
+.from-inputs input[type="email"],
+.from-inputs input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #888;
+}
+
+.form-errors {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.form-submit {
+  background-color: #888;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+  background-color: #555;
+}
+
+/* Sidebar Drawer */
+.sidebar-drawer {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.sidebar-drawer .MuiDrawer-paper {
+  width: 240px;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.MuiListItem-root {
+  padding: 12px 16px;
+}
+
+.MuiListItemIcon-root {
+  color: #555;
+}
+
+.nested-item {
+  padding-left: 32px;
+}
+
+.nested-item .MuiListItemIcon-root {
+  color: #777;
+}
+
+.MuiListItem-root:hover {
+  background-color: #e0e0e0;
+}
+
+.MuiCollapse-root {
+  transition: all 0.3s ease;
+}
+
+.Sidebar-container {
+  display: flex;
+}
+.Outlet-render{
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+}
+.dashboard-header{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboard-card{
+    width: 500px;
+    height: 150px;
+}
+.dashboard-card .CardContent{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    background-color: #333;
+    color: #fff;
+    width: 500px;
+    height: 150px;
+}
+.Dashboard-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.dashboard-body h4{
+    color: #333;
+}
+.form-select{
+    width: 100px;
+}
+.table-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.table-header{
+    display: flex;
+    /* flex-direction: row; */
+    justify-content:right;
+    gap: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+/* Modal container */
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: #fff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+  border-radius: 8px;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #9e9e9e;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #616161;
+}
+
+/* Submit button */
+.submit-btn {
+  margin-top: 20px;
+  background-color: #424242;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  /* width: 100%; Full width button */
+}
+
+.submit-btn:hover {
+  background-color: #616161;
+}
+
+/* Input fields */
+.MuiTextField-root {
+  margin-bottom: 16px;
+  width: 100%; /* Full width input */
+}
+
+/* Typography adjustments */
+#modal-title {
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #424242;
+  text-align: center;
+}
+.classss{
+  display: flex;
+  justify-content: center;
+} 
+
+.addition-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.userprofile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.userimage,
+.userprofile h6 {
+  cursor: pointer;
 }
