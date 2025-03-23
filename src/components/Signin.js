@@ -15,7 +15,7 @@ const Signin = () => {
   });
 
   useEffect(()=>{
-    if(ADMINSIGIN_DATA == "Logged in Successfully"){
+    if(ADMINSIGIN_DATA?.data?.message == "Logged in Successfully"){
       navigate("/dashboard/profile")
     }
     console.log(ADMINSIGIN_DATA,'sdcd')

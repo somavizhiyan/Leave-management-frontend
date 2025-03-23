@@ -89,15 +89,18 @@ const empSlice = createSlice({
   reducers: {
     clearLoading: (state) => {
       state.SIGNIN_STATUS = "initial";
+      state.ADMINSIGIN_DATA = "initial";
+      state.SIGNIN_DATA = "initial";
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(empsignin.pending, (state) => {
         state.SIGNIN_STATUS = "Loading";
       })
       .addCase(empsignin.fulfilled, (state, action) => {
-        state.SIGNIN_DATA = action?.payload?.data?.message;
+        state.SIGNIN_DATA = action?.payload;
         console.log(action?.payload?.data, "edewdewd");
         localStorage.setItem("role", action?.payload?.data?.role);
         localStorage.setItem("id",action?.payload?.data?.id)
@@ -106,6 +109,7 @@ const empSlice = createSlice({
       })
       .addCase(empsignin.rejected, (state, action) => {
         state.SIGNIN_DATA = action?.payload?.response?.data?.error;
+        toast.error(action?.payload?.response?.data?.error)
         state.SIGNIN_STATUS = "Rejected";
       })
 
@@ -113,13 +117,13 @@ const empSlice = createSlice({
         state.ADMINSIGIN_STATUS = "Loading";
       })
       .addCase(adminsignin.fulfilled, (state, action) => {
-        state.ADMINSIGIN_DATA = action?.payload?.data?.message;
+        state.ADMINSIGIN_DATA = action?.payload;
         console.log(action?.payload?.data, "edewdewd");
         localStorage.setItem("role", action?.payload?.data?.role);
         localStorage.setItem("id", action?.payload?.data?.id);
         localStorage.setItem("name",action?.payload?.data?.name)
         state.ADMINSIGIN_STATUS = "Fullfilled";
-        toast.success(action?.payload?.data?.message)
+        // toast.success(action?.payload?.data?.message)
       })
       .addCase(adminsignin.rejected, (state, action) => {
         state.ADMINSIGIN_DATA = action?.payload?.response?.data?.error;

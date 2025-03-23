@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Link,useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { empsignin, signSelector } from "../Reducer/reducer/signin.redu";
+import { ToastContainer } from "react-toastify";
 const Employesignin = () => {
   const {SIGNIN_DATA,SIGNIN_STATUS} = useSelector(signSelector)
   const dispatch = useDispatch();
@@ -15,12 +16,14 @@ const Employesignin = () => {
   
   //useeffect
   useEffect(()=>{
-    if(SIGNIN_DATA == "Logged in Successfully"){
+    if(SIGNIN_DATA?.data?.message == "Logged in Successfully"){
       navigate("/dashboard/profile",{replace:true})
     }
   },[SIGNIN_DATA,SIGNIN_STATUS])
+
   return (
     <div className="sign-container">
+      <ToastContainer/>
       <div>
         <Link to={"/"}>Admin login /</Link>
         <Link to={"/employe_signin"}>Employee login</Link>

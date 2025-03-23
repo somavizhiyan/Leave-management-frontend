@@ -82,7 +82,13 @@ import {
   const leaverequestSlice = createSlice({
     name: `${nameSpace}`,
     initialState,
-    reducers: {},
+    reducers: {
+      clearLevReqLoading: (state) => {
+        state.createLeaveRequest = "initial";
+        state.updateLeaveRequest = "initial";
+        state.deleteLeaveRequest = "initial";
+      },
+    },
     extraReducers: (builder) => {
       builder
         .addCase(createleaverequest.pending, (state) => {
@@ -148,5 +154,6 @@ import {
   });
   
   export const leaverequestSelector = (state) => state.LeaveRequest;
+  export const {clearLevReqLoading} = leaverequestSlice.actions
   export default leaverequestSlice.reducer;
   

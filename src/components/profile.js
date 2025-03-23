@@ -42,6 +42,7 @@ import {
   adminupdate,
   getadmindetails,
   signSelector,
+  clearLoading,
 } from "../Reducer/reducer/signin.redu";
 import {
   employeSelector,
@@ -61,7 +62,8 @@ const Profile = () => {
     updateDepartmentLoading,
   } = useSelector(departmentSelector);
 
-  const { ADMIN_DATA, ADMINSIGIN_DATA } = useSelector(signSelector);
+  const { ADMIN_DATA, ADMINSIGIN_DATA, SIGNIN_DATA } =
+    useSelector(signSelector);
   const { getEmployeById } = useSelector(employeSelector);
 
   console.log(ADMIN_DATA, "sdcsd");
@@ -99,8 +101,21 @@ const Profile = () => {
 
   //useeffect
   useEffect(() => {
-    toast.success(ADMINSIGIN_DATA);
-  }, [ADMINSIGIN_DATA]);
+    if (ADMINSIGIN_DATA) {
+      if (ADMINSIGIN_DATA?.data?.message) {
+        toast.success(ADMINSIGIN_DATA?.data?.message);
+        dispatch(clearLoading());
+      }
+    }
+
+    if (SIGNIN_DATA) {
+      if (SIGNIN_DATA?.data?.message) {
+        toast.success(SIGNIN_DATA?.data?.message);
+        dispatch(clearLoading());
+      }
+    }
+  }, [ADMINSIGIN_DATA, SIGNIN_DATA]);
+
   useEffect(() => {
     const query = { query: "", limit: 10, page: 1 };
     role == 0 ? dispatch(getadmindetails(ids)) : dispatch(getemployebyid(ids));
@@ -109,10 +124,10 @@ const Profile = () => {
 
   return (
     <div className="department-container">
+      <ToastContainer />
       <div>
         {role == 0 ? (
           <div className="department-container">
-            <ToastContainer />
             <div>
               <Box component="div" className="">
                 <Typography
@@ -213,9 +228,9 @@ const Profile = () => {
                           type="submit"
                           variant="contained"
                           color="primary"
-                          sx={{ mt: 2 }}
+                          sx={{ mt: 2, display: "block", mx: "auto" }}
                         >
-                          update
+                          Update
                         </Button>
                       </Form>
                     </>

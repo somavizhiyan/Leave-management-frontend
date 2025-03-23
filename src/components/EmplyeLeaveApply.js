@@ -47,11 +47,13 @@ import {
   getleaverequestbyid,
   leaverequestSelector,
   updateeleaverequest,
+  clearLevReqLoading
 } from "../Reducer/reducer/leaverequest.redu";
 import {
   employeSelector,
   getemployebyid,
 } from "../Reducer/reducer/employe.redu";
+import { toast, ToastContainer } from "react-toastify";
 
 const EmployeLeaveApply = () => {
   const ids = localStorage.getItem("id");
@@ -62,6 +64,9 @@ const EmployeLeaveApply = () => {
     createLeaveRequestLoading,
     updateLeaveRequestLoading,
     deleteLeaveRequestLoading,
+    createLeaveRequest,
+    updateLeaveRequest,
+    deleteLeaveRequest
   } = useSelector(leaverequestSelector);
 
   const { getEmployeById } = useSelector(employeSelector);
@@ -92,7 +97,7 @@ const EmployeLeaveApply = () => {
     console.log(id, "cdscd");
     dispatch(getleaverequestbyid(id));
     setOpenupdatemodel(!openupdatemodel);
-  };  
+  };
 
   useEffect(() => {
     const query = {
@@ -111,15 +116,51 @@ const EmployeLeaveApply = () => {
     createLeaveRequestLoading,
     deleteLeaveRequestLoading,
     updateLeaveRequestLoading,
-    id
+    id,
   ]);
 
   useEffect(() => {
     setid(ids);
   }, [ids]);
 
+  useEffect(() => {
+    if (createLeaveRequest) {
+      console.log("entered");
+      if (createLeaveRequest?.data?.message) {
+        toast.success(createLeaveRequest?.data?.message);
+        dispatch(clearLevReqLoading());
+      }
+      if (createLeaveRequest?.data?.error) {
+        toast.error(createLeaveRequest?.data?.error);
+        dispatch(clearLevReqLoading());
+      }
+    }
+    if (updateLeaveRequest) {
+      console.log("entered");
+      if (updateLeaveRequest?.data?.message) {
+        toast.success(updateLeaveRequest?.data?.message);
+        dispatch(clearLevReqLoading());
+      }
+      if (updateLeaveRequest?.response?.data?.error) {
+        toast.error(updateLeaveRequest?.response?.data?.error);
+        dispatch(clearLevReqLoading());
+      }
+    }
+    if (deleteLeaveRequest) {
+      console.log("entered");
+      if (deleteLeaveRequest?.data?.message) {
+        toast.success(deleteLeaveRequest?.data?.message);
+        dispatch(clearLevReqLoading());
+      }
+      if (deleteLeaveRequest?.response?.data?.error) {
+        toast.error(deleteLeaveRequest?.response?.data?.error);
+        dispatch(clearLevReqLoading());
+      }
+    }
+  }, [createLeaveRequest, updateLeaveRequest, deleteLeaveRequest]);
   return (
     <div className="department-container">
+      <ToastContainer/>
       <h4>LEAVE APPLY</h4>
       <div>
         <TableContainer component={Paper} className="table-container">
@@ -263,7 +304,7 @@ const EmployeLeaveApply = () => {
               formData.gender = getEmployeById?.gender;
               formData.mobileno = getEmployeById?.mobileno;
               formData.dob = getEmployeById?.dob;
-              formData.empstatus = getEmployeById?.status
+              formData.empstatus = getEmployeById?.status;
               dispatch(createleaverequest(formData));
               setOpencreatemodel(!opencreatemodel);
             }}
