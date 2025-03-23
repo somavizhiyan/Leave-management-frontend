@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/somavizhiyan/Leave-management-frontend/static/css/main.5f6e18ca.css",
+    "main.js": "/somavizhiyan/Leave-management-frontend/static/js/main.ea8e1480.js",
+    "static/js/453.8ab44547.chunk.js": "/somavizhiyan/Leave-management-frontend/static/js/453.8ab44547.chunk.js",
+    "index.html": "/somavizhiyan/Leave-management-frontend/index.html",
+    "main.5f6e18ca.css.map": "/somavizhiyan/Leave-management-frontend/static/css/main.5f6e18ca.css.map",
+    "main.ea8e1480.js.map": "/somavizhiyan/Leave-management-frontend/static/js/main.ea8e1480.js.map",
+    "453.8ab44547.chunk.js.map": "/somavizhiyan/Leave-management-frontend/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5f6e18ca.css",
+    "static/js/main.ea8e1480.js"
+  ]
+}
